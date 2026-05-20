@@ -6,10 +6,14 @@ import { verifyToken } from './auth';
 import prisma from './prisma';
 import 'dotenv/config';
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,
+});
 
 startStandaloneServer(server, {
-  listen: { port: 4000 },
+  listen: { port: parseInt(process.env.PORT || '4000') },
   context: async ({ req }) => {
     const authHeader = req.headers.authorization || '';
     const token = authHeader.replace('Bearer ', '');
