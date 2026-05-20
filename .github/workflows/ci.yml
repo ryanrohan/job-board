@@ -64,6 +64,12 @@ jobs:
         env:
           DATABASE_URL: postgresql://ryanrohan:password@localhost:5432/jobboard
 
+      - name: Generate Prisma client
+        working-directory: ./backend
+        run: npx prisma generate
+        env:
+          DATABASE_URL: postgresql://ryanrohan:password@localhost:5432/jobboard
+
       - name: Build backend
         working-directory: ./backend
         run: npm run build
