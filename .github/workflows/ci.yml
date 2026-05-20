@@ -89,6 +89,9 @@ jobs:
 
       - name: Wait for servers to be ready
         run: |
+          sleep 15
+          curl http://localhost:4000 || echo "Backend not responding"
+          curl http://localhost:3000 || echo "Frontend not responding"
           npx wait-on http://localhost:4000 http://localhost:3000 --timeout 120000
 
       - name: Run Cypress tests
