@@ -2,6 +2,8 @@
 
 A full-stack job board application where employers can post listings and applicants can apply. Built to demonstrate a modern web development stack including GraphQL, containerization, testing, and CI/CD.
 
+**[Live Demo](https://job-board-ryan-rohan.vercel.app)**
+
 ## Tech Stack
 
 **Frontend:** Next.js, TypeScript, Apollo Client, Zustand, Tailwind CSS  
@@ -72,3 +74,8 @@ job-board/
 │   └── store/       # Zustand state
 └── docker-compose.yml
 ```
+
+## Deployment
+
+- **Frontend**: Vercel — https://job-board-ryan-rohan.vercel.app
+- **Backend**: Render — https://job-board-backend-hewd.onrender.com
