@@ -70,7 +70,9 @@ jobs:
 
       - name: Start backend
         working-directory: ./backend
-        run: node dist/index.js &
+        run: |
+          node dist/index.js > /tmp/backend.log 2>&1 &
+          echo "Backend PID: $!"
         env:
           DATABASE_URL: postgresql://ryanrohan:password@localhost:5432/jobboard
           JWT_SECRET: supersecretkey123
@@ -89,7 +91,10 @@ jobs:
 
       - name: Wait for servers to be ready
         run: |
-          sleep 15
+          sleep 20
+          echo "=== Backend log ==="
+          cat /tmp/backend.log
+          echo "=== Checking ports ==="
           curl http://localhost:4000 || echo "Backend not responding"
           curl http://localhost:3000 || echo "Frontend not responding"
           npx wait-on http://localhost:4000 http://localhost:3000 --timeout 120000
